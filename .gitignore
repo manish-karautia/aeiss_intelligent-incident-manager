@@ -1,0 +1,5 @@
+.env
+__pycache__/
+memory/faiss_index/
+*.pkl
+*.bin
