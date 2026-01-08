@@ -1,3 +1,4 @@
+streamlit
 fastapi
 uvicorn
 pandas
@@ -9,3 +10,7 @@ faiss-cpu
 sentence-transformers
 langchain
 pydantic
+langchain-openai
+langchain
+openai
+python-dotenv

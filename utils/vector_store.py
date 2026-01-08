@@ -1,5 +1,6 @@
 import faiss
 import pickle
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "all-MiniLM-L6-v2"

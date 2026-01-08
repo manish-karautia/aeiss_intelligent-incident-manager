@@ -1,11 +1,23 @@
 import os
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
+import google.generativeai as genai
 
 load_dotenv()
 
-llm = ChatOpenAI(
-    model="gpt-4",
-    temperature=0.2,
-    openai_api_key=os.getenv("OPENAI_API_KEY")
-)
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+MODEL_NAME = "gemini-flash-latest"
+
+class GeminiLLM:
+    def __init__(self):
+        self.model = genai.GenerativeModel(MODEL_NAME)
+
+    def invoke(self, prompt: str):
+        response = self.model.generate_content(prompt)
+
+        class R:
+            content = response.text.strip()
+
+        return R()
+
+llm = GeminiLLM()

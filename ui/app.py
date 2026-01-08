@@ -6,10 +6,13 @@ st.title("Aegis – Intelligent Incident Manager")
 
 incident = st.text_area("Describe the incident")
 
+API_URL = st.secrets["API_URL"]
+
 if st.button("Analyze Incident"):
     response = requests.post(
-        "http://localhost:8000/analyze",
-        json={"text": incident}
+        f"{API_URL}/analyze",
+        json={"text": incident},
+        timeout=60
     ).json()
 
     st.subheader("Incident Understanding")

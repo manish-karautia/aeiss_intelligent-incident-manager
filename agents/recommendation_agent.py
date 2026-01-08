@@ -3,9 +3,10 @@ from utils.prompts import RECOMMENDATION_PROMPT
 
 class RecommendationAgent:
     def run(self, context, root_cause):
-        return llm.predict(
+        response = llm.invoke(
             RECOMMENDATION_PROMPT.format(
                 context=context,
                 root_cause=root_cause
             )
         )
+        return response.content
