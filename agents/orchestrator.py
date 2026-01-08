@@ -39,7 +39,7 @@ class IncidentOrchestrator:
         self.llm_router = LLMRouter()
 
         # Database connection (DuckDB)
-        self.con = duckdb.connect("incidents.duckdb")
+        self.con = duckdb.connect("incidents.duckdb", read_only=False)
 
     def run(self, text: str):
         """
@@ -63,7 +63,6 @@ class IncidentOrchestrator:
             schema = self.schema_agent.get_schema(self.con)
             sql = self.sql_agent.generate_sql(text, schema, sql_llm)
             
-            sql = sql.replace(";", "")
 
 
             if not self.sql_guard.validate(sql):
