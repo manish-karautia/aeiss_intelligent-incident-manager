@@ -19,14 +19,11 @@ class IncidentResponse(BaseModel):
     root_cause: str
     recommended_actions: str
 
-@app.post("/analyze", response_model=IncidentResponse)
+@app.post("/analyze")
 def analyze_incident(req: IncidentRequest):
     """
-    Analyze an operational incident and return:
-    - Structured understanding
-    - Similar historical incidents
-    - Likely root cause
-    - Recommended next best actions
+    Analyze incident or execute SQL-based analytics depending on intent.
+    
     """
     result = orchestrator.run(req.text)
     return result

@@ -1,23 +1,26 @@
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# Create Gemini client (NEW SDK)
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
 
 MODEL_NAME = "gemini-flash-latest"
 
 class GeminiLLM:
-    def __init__(self):
-        self.model = genai.GenerativeModel(MODEL_NAME)
-
+    """
+    Minimal LLM wrapper used by all agents.
+    Compatible with .invoke() interface.
+    """
     def invoke(self, prompt: str):
-        response = self.model.generate_content(prompt)
-
-        class R:
-            content = response.text.strip()
-
-        return R()
+        response = client.models.generate_content(
+            model="gemini-flash-latest",  # FREE + stable
+            contents=prompt
+        )
+        return response.text
 
 llm = GeminiLLM()

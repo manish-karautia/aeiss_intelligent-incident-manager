@@ -9,4 +9,4 @@ class RecommendationAgent:
                 root_cause=root_cause
             )
         )
-        return response.content
+        return response

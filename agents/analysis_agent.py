@@ -6,4 +6,4 @@ class AnalysisAgent:
         response = llm.invoke(
             ROOT_CAUSE_PROMPT.format(context=context)
         )
-        return response.content
+        return response

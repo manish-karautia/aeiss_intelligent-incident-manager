@@ -7,7 +7,8 @@ class NLPAgent:
     def run(self, text):
         response = llm.invoke(
             INCIDENT_PARSE_PROMPT.format(text=text)
-        ).content
+        )
+        return response
 
         # Remove markdown fences if present
         cleaned = re.sub(r"```json|```", "", response).strip()
