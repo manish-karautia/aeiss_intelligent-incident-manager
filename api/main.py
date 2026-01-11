@@ -27,3 +27,7 @@ def analyze_incident(req: IncidentRequest):
     """
     result = orchestrator.run(req.text)
     return result
+
+@app.get("/")
+def health():
+    return {"status": "ok"}
